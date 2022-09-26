@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>homepage</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
 </head>
 <body>
 <h1>Homepage</h1>
 <p>Welcome to the party!</p>
+<p th:text="${mySpecialNumber}">mySpecialNumber</p>
+<a th:href="@{/about}">about</a>
 </body>
 </html>
