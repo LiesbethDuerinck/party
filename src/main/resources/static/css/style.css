@@ -1,11 +1,23 @@
+body{
+    background-color: lightseagreen;
+}
+
 h1{
     font-family: Verdana;
-    color: gray;
-    font-size: 18px;
+    color: blanchedalmond;
+    font-size: 60px;
+    padding: 40px;
+    text-align: center;
+}
+
+h2{
+    font-family: Verdana;
+    font-size:18px;
+    font-weight: bold;
 }
 
 p{
     font-family: Verdana;
-    color: black;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: bold;
 }

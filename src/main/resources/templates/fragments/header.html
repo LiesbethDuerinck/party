@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>header</title>
+</head>
+<body>
+    <div class="nav" th:fragment="header">
+      <h1>Let's Party!</h1>
+        <div class="navbuttons">
+          <a class="buttonLook menuButton" th:href="@{/home}">home</a>
+          <a class="buttonLook menuButton" th:href="@{/about}">about</a>
+          <a class="buttonLook menuButton" th:href="@{/venuedetails}">venuedetails</a>
+          <a class="buttonLook menuButton" th:href="@{/pay}">pay</a>
+        </div>
+    </div>
+</body>
+</html>
