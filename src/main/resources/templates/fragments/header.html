@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>header</title>
+    <title>header</title>                       //fragments dienen om duplicatie te vermijden
 </head>
 <body>
-    <div class="nav" th:fragment="header">
+    <div class="nav" th:fragment="header">          //fragment heet nu header
       <h1>Let's Party!</h1>
         <div class="navbuttons">
           <a class="buttonLook menuButton" th:href="@{/home}">home</a>
