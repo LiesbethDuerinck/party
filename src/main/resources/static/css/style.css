@@ -2,16 +2,7 @@ body{
     background-color: lightseagreen;
 }
 
-header{
-
-}
-
-navbuttons{
-    background-color: black;
-    padding-inline: 20px;
-}
-
-buttonLook menuButton{
+.buttonLook{
     width:200px;
     height:50px;
     margin-right:40px;
@@ -20,6 +11,44 @@ buttonLook menuButton{
     font-size:14px;
     text-decoration: none;
     text-align: center;
+    background-color: black;
+}
+
+.buttonLook:hover{
+    background-color: white;
+}
+
+.container{
+    margin: 10px;
+}
+
+.menuButton{
+    float: left;
+}
+
+.nav{
+    overflow: hidden;
+    position: relative;
+    top: 170px;
+}
+
+header{
+    background-image: url("../partyproject/images/image2.jpg");
+}
+
+.buttonlist{
+    list-style: none;
+}
+
+.buttonlist li a{
+    width: 800px;
+    height: 50px;
+    display: block;
+    line-height: 50px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 15px;
 }
 
 h1{

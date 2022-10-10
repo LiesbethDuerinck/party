@@ -6,20 +6,12 @@
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
 </head>
 <body>
-<div th:replace="fragments/header :: header">Header</div>
-<h1 th:text="${venuedetails}">venuedetails</h1>
-<p>Welcome to the Venue Page.</p>
-<h2>venues</h2>
-<div th:each="venueName: ${venueNames}">
-    <a class="buttonLook mediumButton"
-       th:href="@{|/venuedetails/${venueName}|}"
-       th:text="${venueName}">venue name</a>
-</div>
-<div class="row1">
-    <div class="row1content">
-        <h2 th:if="${venueName}" th:text="${venueName}">venuedetails</h2>
-        <p th:unless="${venueName}">no venue was chosen</p>
-    </div>
+<div th:replace="fragments/header :: header">header</div>
+
+<div class="container">
+    <h1 th:if="${venuename}" th:text="${venuename}">venuename</h1>
+    <p th:unless="${venuename}">No venue is chosen</p>
+    <p>Welcome to the Venue Page.</p>
 </div>
 </body>
 </html>

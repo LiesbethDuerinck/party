@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Pay</title>
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="..static/css/style.css"/>
 </head>
 <body>
-<div th:replace="fragments/header :: header"> header</div>
-<div class="container">
-    <h2>Pay</h2>
-    <p>De datum van vandaag is <span th:text="${today}"></span></p></div>
-    <p>Please pay before <span th:text="${paydate}"></span></p></div>
+    <div th:replace="fragments/header :: header"> header</div>
+    <div class="container">
+        <h1>Pay</h1>
+        <p>Please pay before <span th:text="${paydate}"></span></p></div>
+        <p th:if="${weekend}">Have a nice weekend!</p>
+        <p th:unless="${weekend}">Weekend is coming closer!</p>
 </body>
 </html>

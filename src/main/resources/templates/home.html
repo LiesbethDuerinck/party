@@ -7,7 +7,11 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header">Home</div>
-<p>Welcome to the party!</p>
-<p th:text="${mySpecialNumber}">mySpecialNumber</p>
+
+<div class ="container">
+    <h1>Homepage</h1>
+        <p>Welcome to the party!</p>
+        <p th:text="${mySpecialNumber}">mySpecialNumber</p>
+</div>
 </body>
 </html>

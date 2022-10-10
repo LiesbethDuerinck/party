@@ -6,13 +6,12 @@
     <title>header</title>
 </head>
 <body>
-    <div class="nav" th:fragment="header">
+    <div class="header" th:fragment="header">
       <h1>Let's Party!</h1>
-        <img scr=".../partyproject/Image2.jpg" alt="Beach Party">
-        <div class="navbuttons">
+        <div class="nav">
           <a class="buttonLook menuButton" th:href="@{/home}">home</a>
           <a class="buttonLook menuButton" th:href="@{/about}">about</a>
-          <a class="buttonLook menuButton" th:href="@{/venuedetails}">venuedetails</a>
+          <a class="buttonLook menuButton" th:href="@{/venuelist}">venuelist</a>
           <a class="buttonLook menuButton" th:href="@{/pay}">pay</a>
         </div>
     </div>
