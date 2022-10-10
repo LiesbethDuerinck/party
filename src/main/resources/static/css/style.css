@@ -1,39 +1,63 @@
-body{
-    background-color: lightseagreen;
+html, body{
+    background: lightseagreen;
+    padding: 0;
+    margin: 0;
+    font-family: "Verdana Pro Black";
+}
+
+h1, p{
+    font-family: Verdana;
+    color:blanchedalmond;
+}
+
+h1{
+    font-family: "Verdana Pro Black";
+    font-size: 80px;
+    text-align: center;
+}
+
+p{
+    font-family: Verdana;
+    font-size: 16px;
 }
 
 .buttonLook{
-    width:200px;
-    height:50px;
-    margin-right:40px;
-    margin-left:10px;
-    display:inline-block;
-    font-size:14px;
-    text-decoration: none;
-    text-align: center;
     background-color: black;
-}
-
-.buttonLook:hover{
-    background-color: white;
+    color: white;
+    display: block;
+    width: 150px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
 }
 
 .container{
-    margin: 10px;
+    width:80%;
+    margin-left:auto;
+    margin-right: auto;
+    float: left;
+}
+
+.buttonLook:hover{
+    background-color: gray;
 }
 
 .menuButton{
     float: left;
+    margin-left: 10px;
 }
 
 .nav{
-    overflow: hidden;
     position: relative;
-    top: 170px;
+    background-image: url("../img/partybanner.jpg");
 }
 
-header{
-    background-image: url("../partyproject/images/image2.jpg");
+.header{
+    background-size: cover;
+    width: 100%;
+    height: 100%;
 }
 
 .buttonlist{
@@ -41,9 +65,11 @@ header{
 }
 
 .buttonlist li a{
+    background-color: #999999;
+    color: white;
+    display: block;
     width: 800px;
     height: 50px;
-    display: block;
     line-height: 50px;
     font-size: 18px;
     text-align: center;
@@ -51,22 +77,32 @@ header{
     margin-bottom: 15px;
 }
 
-h1{
-    font-family: Verdana;
-    color: blanchedalmond;
-    font-size: 60px;
-    padding: 40px;
-    text-align: center;
+.nextprev{
+    margin-top: 150px;
+    background-color: blanchedalmond;
+    display: block;
+    width: 20px;
+    line-height: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-h2{
-    font-family: Verdana;
-    font-size:18px;
-    font-weight: bold;
+.nextprev:hover{
+    background-color: gray;
+    width: 20px;
+    font-size: 25px;
+    line-height: 25px;
+    margin-top: 148px;
 }
 
-p{
-    font-family: Verdana;
-    font-size: 14px;
-    font-weight: bold;
+.border{
+    width: 10%;
+    float: left;
+}
+.buttonlist li a:hover{
+    background-color: darkcyan;
 }
