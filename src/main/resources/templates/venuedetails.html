@@ -9,7 +9,7 @@
 <div th:replace="fragments/header :: header">Header</div>
 <h1 th:text="${venuedetails}">venuedetails</h1>
 <p>Welcome to the Venue Page.</p>
-<h2>venues</h2>                                         //itereren over de array om de links naar de venues te displayen
+<h2>venues</h2>
 <div th:each="venueName: ${venueNames}">
     <a class="buttonLook mediumButton"
        th:href="@{|/venuedetails/${venueName}|}"
@@ -17,7 +17,7 @@
 </div>
 <div class="row1">
     <div class="row1content">
-        <h2 th:if="${venueName}" th:text="${venueName}">venuedetails</h2>           //conditional evaluation
+        <h2 th:if="${venueName}" th:text="${venueName}">venuedetails</h2>
         <p th:unless="${venueName}">no venue was chosen</p>
     </div>
 </div>

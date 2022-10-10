@@ -6,8 +6,8 @@
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
 </head>
 <body>
-<div th:replace="fragments/header :: header">Home</div>         //replace: het fragment vervangt het huidige html-element, andere optie is insert
+<div th:replace="fragments/header :: header">Home</div>
 <p>Welcome to the party!</p>
-<p th:text="${mySpecialNumber}">mySpecialNumber</p>     //via Thymeleaf worden attributen uit het Model gehaald
+<p th:text="${mySpecialNumber}">mySpecialNumber</p>
 </body>
 </html>

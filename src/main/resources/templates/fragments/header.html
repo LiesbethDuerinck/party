@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>header</title>                       //fragments dienen om duplicatie te vermijden
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+    <title>header</title>
 </head>
 <body>
-    <div class="nav" th:fragment="header">          //fragment heet nu header
+    <div class="nav" th:fragment="header">
       <h1>Let's Party!</h1>
+        <img scr=".../partyproject/Image2.jpg" alt="Beach Party">
         <div class="navbuttons">
           <a class="buttonLook menuButton" th:href="@{/home}">home</a>
           <a class="buttonLook menuButton" th:href="@{/about}">about</a>
