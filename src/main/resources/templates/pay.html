@@ -9,8 +9,9 @@
     <div th:replace="fragments/header :: header"> header</div>
     <div class="container">
         <h2>Pay</h2>
-        <p>Please pay before <span th:text="${paydate}"></span></p></div>
+        <p>Please pay before <span th:text="${paydate}"></span></p>
         <p th:if="${weekend}">Have a nice weekend!</p>
         <p th:unless="${weekend}">Weekend is coming closer!</p>
+    </div>
 </body>
 </html>
