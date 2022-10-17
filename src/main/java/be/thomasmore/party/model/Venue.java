@@ -1,6 +1,12 @@
 package be.thomasmore.party.model;
 
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Venue {
+    @Id
     private String venueName;
     private String linkMoreInfo;
     private String city;

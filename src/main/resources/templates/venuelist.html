@@ -12,9 +12,8 @@
 <div class="container">
     <h2>Venue list</h2>
     <ul class="buttonlist">
-        <li th:each="venuename, iStat:${venuenames}">
-            <a th:href="@{|/venuedetailsbyindex/${iStat.index}|}" th:text="|${venuename}', met index: ' ${iStat.index} ' met in totaal ' ${iStat.size} ' elementen.'|" href="">venue name</a>
-       <li th: each="venue, iStat:${venues}">
+
+        <li th:each="venue, iStat:${venues}">
             <a th:href="@{|/venuedetailsbyindex/${iStat.index}|}" th:text="|${venue.getVenueName()}|" href="">venue name</a>
         </li>
     </ul>
