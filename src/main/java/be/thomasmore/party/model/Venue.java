@@ -9,18 +9,19 @@ public class Venue {
     @Id
     private String venueName;
     private String linkMoreInfo;
+
     private String city;
-    private boolean KidsFriendly;
+    private boolean kidsFriendly;
     private boolean foodAvailable;
     private boolean parking;
 
     public Venue(){}
 
-    public Venue(String venueName, String linkMoreInfo, String city, boolean KidsFriendly, boolean foodAvailable, boolean parking){
+    public Venue(String venueName, String linkMoreInfo, String city, boolean kidsFriendly, boolean foodAvailable, boolean parking){
         this.venueName = venueName;
         this.linkMoreInfo = linkMoreInfo;
         this.city = city;
-        this.KidsFriendly = KidsFriendly;
+        this.kidsFriendly = kidsFriendly;
         this.foodAvailable = foodAvailable;
         this.parking = parking;
     }
@@ -50,7 +51,7 @@ public class Venue {
     }
 
     public boolean isKidsFriendly() {
-        return KidsFriendly;
+        return kidsFriendly;
     }
 
     public boolean isParking() {
@@ -66,7 +67,7 @@ public class Venue {
     }
 
     public void setKidsFriendly(boolean kidsFriendly) {
-        KidsFriendly = kidsFriendly;
+        kidsFriendly = kidsFriendly;
     }
 
     public void setParking(boolean parking) {
