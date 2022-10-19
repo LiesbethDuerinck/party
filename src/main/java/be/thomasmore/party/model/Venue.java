@@ -7,6 +7,8 @@ import javax.persistence.Id;
 @Entity
 public class Venue {
     @Id
+    private String id;
+
     private String venueName;
     private String linkMoreInfo;
 
@@ -18,6 +20,7 @@ public class Venue {
     public Venue(){}
 
     public Venue(String venueName, String linkMoreInfo, String city, boolean kidsFriendly, boolean foodAvailable, boolean parking){
+
         this.venueName = venueName;
         this.linkMoreInfo = linkMoreInfo;
         this.city = city;

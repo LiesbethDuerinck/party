@@ -67,6 +67,10 @@ p{
     overflow:hidden;
 }
 
+.buttonlist{
+
+}
+
 .buttonlist li a:hover{
     background-color: darkcyan;
 }
@@ -81,4 +85,6 @@ p{
     margin-right: 2%;
     padding-top: 2%;
     clear: both;
+    color: black;
+    text-decoration: none;
 }

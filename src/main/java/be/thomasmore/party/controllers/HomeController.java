@@ -1,7 +1,9 @@
 package be.thomasmore.party.controllers;
 
 import be.thomasmore.party.model.Venue;
+import be.thomasmore.party.repositories.VenueRepository;
 import org.hibernate.query.criteria.internal.predicate.BooleanExpressionPredicate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;                //om data van de Controller naar de View te sturen. MVC = Model, View, Controller
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 
 @Controller         //deze annotatie vertelt Spring dat deze class een Controller is
 public class HomeController {
@@ -21,6 +24,9 @@ public class HomeController {
             new Venue("Zomerfabriek", "https://zomerfabriek.be/", "Antwerpen", true, true, false),
             new Venue("Zomerbar", "https://www.zva.be/zomerbar-circussen", "Antwerpen", true, true, true)
     };
+
+    @Autowired
+    private VenueRepository venueRepository;
 
     @GetMapping(value = {"/", "/home", "/home/"}) //deze annotatie vertelt Spring om deze methode aan te roepen als de Application Server de request "/" binnenkrijgt
     public String home(Model model) {
@@ -55,6 +61,7 @@ public class HomeController {
 
     @GetMapping("/venuelist")
     public String venuelist(Model model){
+        Iterable<Venue> venues = venueRepository.findAll();
         model.addAttribute("venues", venues);
         return "venuelist";
     }
@@ -65,6 +72,37 @@ public class HomeController {
 
         model.addAttribute("venuename", venuename);           //volledige array wordt in het model gestoken
         return "venuedetails";
+    }
+
+    @GetMapping({"/venuedetailsbyid","/venuedetailsbyid/", "/venuedetailsbyid/{id}"})
+    public String venueDetailsById(Model model, @PathVariable(required = false) String venueid){
+        Optional oVenue = null;
+        Venue venue = null;
+        int venueCount = 0;
+
+        venueCount = (int) venueRepository.count();
+
+        oVenue = venueRepository.findById(Integer.parseInt(venueid));
+        if(oVenue.isPresent()){
+            venue = (Venue) oVenue.get();
+        }
+
+        int prevId = Integer.parseInt(venueid)-1;
+        if(prevId<1){
+            prevId = venueCount;
+        }
+
+        int nextId = Integer.parseInt(venueid)+1;
+        if(nextId > venueCount)
+        {
+            nextId = 1;
+        }
+
+        model.addAttribute("venue", venue);
+        model.addAttribute("prevIndex", prevId);
+        model.addAttribute("nextIndex", nextId);
+        return "venuedetailsbyid";
+
     }
 
     @GetMapping({"/venuedetailsbyindex","/venuedetailsbyindex/","/venuedetailsbyindex/{venueindex}"})
