@@ -49,15 +49,21 @@ p{
     margin-left: 10px;
 }
 
-.header {
+.header{
+    margin-top:0px;
+}
+
+.banner {
     background-image: url("../img/partybanner.jpg");
     background-position: center center;
     background-size: cover;
     height: 200px;
     width:100%;
+    padding-top: 50px;
 }
 
 .nav{
+    margin-top: 10px;
     overflow:hidden;
 }
 
