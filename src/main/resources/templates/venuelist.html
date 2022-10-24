@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <title>Venue list</title>
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+  <meta charset="UTF-8">
+  <title>Venue list</title>
+  <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
 </head>
 <body>
 <div th:replace="fragments/header :: header">header</div>
 
 <div class="border"></div>
 <div class="container">
-    <h2>Venue list</h2>
-    <ul class="buttonlist">
+  <h2>Venue list</h2>
+  <ul class="buttonlist">
 
-        <li th:each="venue, iStat:${venues}">
-            <a th:href="@{|/venuedetailsbyindex/${iStat.index}|}" th:text="|${venue.getVenueName()}|" href="">venue name</a>
-            <a th:href="@{|/venuedetailsbyid/${iStat.index +1}|}" th:text="|${venue.getVenueName()}|" href="">venue name</a>
-        </li>
-    </ul>
+    <li th:each="venue, iStat:${venues}">
+
+      <a th:href="@{|/venuedetailsbyid/${iStat.index +1}|}" th:text="|${venue.getVenueName()}|" href="">venue name</a>
+    </li>
+  </ul>
 </div>
 <div class="border"></div>
 </body>

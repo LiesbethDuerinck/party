@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>homepage</title>
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+  <meta charset="UTF-8">
+  <title>homepage</title>
+  <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
 </head>
 <body>
 <div th:replace="fragments/header :: header">Home</div>
 
 <div class ="container">
-    <h2>Homepage</h2>
-        <p>Welcome to the party!</p>
-        <p th:text="${mySpecialNumber}">mySpecialNumber</p>
+  <h2>Homepage</h2>
+  <p>Welcome to the party!</p>
+  <p th:text="${mySpecialNumber}">mySpecialNumber</p>
 </div>
 <div class = "border"></div>
 </body>
