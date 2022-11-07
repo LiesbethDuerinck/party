@@ -5,4 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 
 public interface VenueRepository extends CrudRepository <Venue, Integer>{
+    Iterable<Venue> findByParking(boolean parking);
 }

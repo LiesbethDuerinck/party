@@ -1,5 +1,6 @@
 package be.thomasmore.party.controllers;
 
+import be.thomasmore.party.model.Artist;
 import be.thomasmore.party.model.Venue;
 import be.thomasmore.party.repositories.ArtistRepository;
 import be.thomasmore.party.repositories.VenueRepository;
@@ -38,12 +39,12 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping(value = {"/errors", "/errors/"})
-    public String error (){
-
-        return "error";
+    @GetMapping("/venuelist/parking/yes")
+    public String venuelistParkingYes(Model model){
+        Iterable<Venue> venues = venueRepository.findByParking(true);
+        model.addAttribute("venues", venues);
+        return "venuelist";
     }
-
 
     @GetMapping("/pay")
     public String pay(Model model){
@@ -74,9 +75,41 @@ public class HomeController {
         return "venuelist";
     }
 
-    @GetMapping({"/artistdetails","/artistdetails/{artistid}"})
-    public String artistdetails(Model model, @PathVariable(required = false) String artistid){
-        return artistid;
+    @GetMapping("/artistlist")
+    public String artistlist(Model model){
+        Iterable<Artist> artists = artistRepository.findAll();
+        model.addAttribute("artists", artists);
+        return "artistlist";
+    }
+
+    @GetMapping({"/artistdetailsbyid","/artistdetailsbyid/{artistid}"})
+    public String artistdetailsbyid(Model model, @PathVariable(required = false) String artistid){
+
+        Optional oArtist = null;
+        Artist artist = null;
+        int artistCount = 0;
+
+        artistCount = (int) artistRepository.count();
+
+        oArtist = artistRepository.findById(Integer.parseInt(artistid));
+        if(oArtist.isPresent()){
+            artist = (Artist) oArtist.get();
+        }
+
+        int nextId = Integer.parseInt(artistid)+1;
+        if(nextId > artistCount){
+            nextId = 1;
+        }
+
+        int prevId = Integer.parseInt(artistid)-1;
+        if(prevId < 1){
+            prevId = artistCount;
+        }
+
+        model.addAttribute("artist", artist);
+        model.addAttribute("prevIndex", prevId);
+        model.addAttribute("nextIndex", nextId);
+        return "artistdetailsbyid";
     }
 
     @GetMapping({"/venuedetailsbyid","/venuedetailsbyid/","/venuedetailsbyid/{venueid}"})
