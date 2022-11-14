@@ -39,13 +39,6 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/venuelist/parking/yes")
-    public String venuelistParkingYes(Model model){
-        Iterable<Venue> venues = venueRepository.findByParking(true);
-        model.addAttribute("venues", venues);
-        return "venuelist";
-    }
-
     @GetMapping("/pay")
     public String pay(Model model){
         DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -81,6 +74,30 @@ public class HomeController {
         model.addAttribute("artists", artists);
         return "artistlist";
     }
+    @GetMapping("/venuelist/parking/{isParking}")
+    public String venuelistIsParking(Model model, @PathVariable Optional<String> isParking){
+        boolean parking = false;
+        Integer myParking = 2;
+        Iterable<Venue> venueList = venueRepository.findAll();
+
+        if(isParking.isPresent()){
+            myParking = Integer.parseInt(isParking.get());
+        }
+
+        switch (myParking){
+            case 0:
+                venueList = venueRepository.findByParking(false);
+                break;
+            case 1:
+                venueList = venueRepository.findByParking(true);
+                break;
+            default:
+        }
+        model.addAttribute("venues", venueList);
+        model.addAttribute("parking", myParking);
+        return "venuelist";
+    }
+
 
     @GetMapping({"/artistdetailsbyid","/artistdetailsbyid/{artistid}"})
     public String artistdetailsbyid(Model model, @PathVariable(required = false) String artistid){
@@ -121,7 +138,12 @@ public class HomeController {
 
         venueCount = (int) venueRepository.count();
 
-        oVenue = venueRepository.findById(Integer.parseInt(venueid));
+        try {
+            oVenue = venueRepository.findById(Integer.parseInt(venueid));
+        } catch (NumberFormatException e){
+            return null;
+        }
+
         if(oVenue.isPresent()){
             venue = (Venue) oVenue.get();
         }
@@ -143,4 +165,5 @@ public class HomeController {
         return "venuedetailsbyid";
     }
 
-}
+    }
+

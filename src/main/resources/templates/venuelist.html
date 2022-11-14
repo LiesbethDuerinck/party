@@ -11,13 +11,18 @@
 <div class="border"></div>
 <div class="container">
   <h2>Venue list</h2>
+    <p>Parking:</p>
+    <ul class="filter">
+      <li><a th:classappend="${parking}==1 ? activefilter : nofilter" href="/venuelist/parking/1">Yes</a></li>
+      <li><a th:classappend="${parking}==0 ? activefilter : nofilter" href="/venuelist/parking/0">No</a></li>
+      <li><a th:classappend="${parking}==2 ? activefilter : nofilter" href="/venuelist/parking/2">All</a></li>
+  </ul>
   <ul class="buttonlist">
-
     <li th:each="venue, iStat:${venues}">
-
-      <a th:href="@{|/venuedetailsbyid/${iStat.index +1}|}" th:text="|${venue.getVenueName()}|" href="">venue name</a>
+      <a th:href="@{|/venuedetailsbyid/*{iStat.index +1}|}" th:text="|${venue.getVenueName()}|" href="">venue name</a>
     </li>
   </ul>
+  <div th:if="${test}" th:text="${test}"></div>
 </div>
 <div class="border"></div>
 </body>
