@@ -19,11 +19,31 @@
   </ul>
   <ul class="buttonlist">
     <li th:each="venue, iStat:${venues}">
-      <a th:href="@{|/venuedetailsbyid/*{iStat.index +1}|}" th:text="|${venue.getVenueName()}|" href="">venue name</a>
+    <a th:href="@{|/venuedetailsbyid/*{iStat.index +1}|}" th:text="|${venue.getVenueName()}|" href="">venue name</a>
     </li>
   </ul>
-  <div th:if="${test}" th:text="${test}"></div>
+  <p>Eten beschikbaar:</p>
+  <ul class="filter">
+    <li><a th:classappend="${foodAvailable}==1 ? activefilter : nofilter" href="/venuelist/foodAvailable/1">Yes</a></li>
+    <li><a th:classappend="${foodAvailable}==0 ? activefilter : nofilter" href="/venuelist/foodAvailable/0">No</a></li>
+    <li><a th:classappend="${foodAvailable}==2 ? activefilter : nofilter" href="/venuelist/foodAvailable/2">All</a></li>
+  </ul>
+  <ul class="buttonlist">
+    <li th:each="venue, iStat:${venues}">
+    <a th:href="@{|/venuedetailsbyid/*{iStat.index +1}|}" th:text="|${venue.getVenueName()}|" href="">venue name</a>
+  </ul>
 </div>
+  <p>Kinderen welkom:</p>
+  <ul class="filter">
+    <li><a th:classappend="${kidsFriendly}==1 ? activefilter : nofilter" href="/venuelist/kidsFriendly/1">Yes</a></li>
+    <li><a th:classappend="${kidsFriendly}==0 ? activefilter : nofilter" href="/venuelist/kidsFriendly/0">No</a></li>
+    <li><a th:classappend="${kidsFriendly}==2 ? activefilter : nofilter" href="/venuelist/kidsFriendly/2">All</a></li>
+  </ul>
+  <ul class="buttonlist">
+    <li th:each="venue, iStat:${venues}">
+    <a th:href="@{|/venuedetailsbyid/*{iStat.index +1}|}" th:text="|${venue.getVenueName()}|" href="">venue name</a>
+</ul>
+  <div th:if="${test}" th:text="${test}"></div>
 <div class="border"></div>
 </body>
 </html>

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -95,6 +96,54 @@ public class HomeController {
         }
         model.addAttribute("venues", venueList);
         model.addAttribute("parking", myParking);
+        return "venuelist";
+    }
+
+    @GetMapping("/venuelist/foodAvailable/{isFoodAvailable}")
+    public String venuelistIsFoodAvailable(Model model, @PathVariable Optional<String> isFoodAvailable){
+        boolean foodAvailable = false;
+        Integer myFood = 2;
+        Iterable<Venue> venueList = venueRepository.findAll();
+
+        if(isFoodAvailable.isPresent()){
+            myFood = Integer.parseInt(isFoodAvailable.get());
+        }
+
+        switch (myFood){
+            case 0:
+                venueList = venueRepository.findByFoodAvailable(false);
+                break;
+            case 1:
+                venueList = venueRepository.findByFoodAvailable(true);
+                break;
+            default:
+        }
+        model.addAttribute("venues", venueList);
+        model.addAttribute("foodAvailable", myFood);
+        return "venuelist";
+    }
+
+    @GetMapping("/venuelist/kidsFriendly/{isKidsFriendly}")
+    public String venuelistIsKidsFriendly(Model model, @PathVariable Optional<String> isKidsFriendly){
+        boolean kidsFriendly = false;
+        Integer myKids = 2;
+        Iterable<Venue> venueList = venueRepository.findAll();
+
+        if(isKidsFriendly.isPresent()){
+            myKids = Integer.parseInt(isKidsFriendly.get());
+        }
+
+        switch (myKids){
+            case 0:
+                venueList = venueRepository.findByKidsFriendly(false);
+                break;
+            case 1:
+                venueList = venueRepository.findByKidsFriendly(true);
+                break;
+            default:
+        }
+        model.addAttribute("venues", venueList);
+        model.addAttribute("kidsFriendly", myKids);
         return "venuelist";
     }
 
