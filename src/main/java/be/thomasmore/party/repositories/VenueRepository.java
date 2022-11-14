@@ -8,4 +8,5 @@ public interface VenueRepository extends CrudRepository <Venue, Integer> {
     Iterable<Venue> findByParking(boolean parking);
 
     Iterable<Venue> findByFoodAvailable(boolean foodAvailable);
+    Iterable<Venue> findByKidsFriendly(boolean kidsFriendly);
 }
