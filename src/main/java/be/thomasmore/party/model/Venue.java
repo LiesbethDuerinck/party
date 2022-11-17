@@ -8,11 +8,12 @@ public class Venue {
 
     private String venueName;
     private String linkMoreInfo;
-
     private String city;
     private boolean kidsFriendly;
     private boolean foodAvailable;
     private boolean parking;
+
+
     public Venue(){}
 
     public Venue(int id, String venueName, String linkMoreInfo, String city, boolean kidsFriendly, boolean foodAvailable, boolean parking){
@@ -69,4 +70,6 @@ public class Venue {
     public void setParking(boolean parking) {
         this.parking = parking;
     }
+
+
 }
