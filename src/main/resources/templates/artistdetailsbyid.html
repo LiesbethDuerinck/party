@@ -6,11 +6,13 @@
   <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
 </head>
 <body>
+
 <div th:replace="fragments/header :: header">header</div>
 
 <div class="border">
   <a th:if="${artist}" th:href="@{|/artistdetailsbyid/${prevIndex}|}" href="#" class="nextprev">&lt;</a>
 </div>
+
 <div class="container">
   <div th:if="${artist}">
     <h1 th:text="${artist.getArtistName()}">artistName</h1>

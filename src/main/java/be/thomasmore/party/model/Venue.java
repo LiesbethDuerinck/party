@@ -12,11 +12,12 @@ public class Venue {
     private boolean kidsFriendly;
     private boolean foodAvailable;
     private boolean parking;
+    private int capacity;
 
 
     public Venue(){}
 
-    public Venue(int id, String venueName, String linkMoreInfo, String city, boolean kidsFriendly, boolean foodAvailable, boolean parking){
+    public Venue(int id, String venueName, String linkMoreInfo, String city, boolean kidsFriendly, boolean foodAvailable, boolean parking, int capacity){
         this.id = id;
         this.venueName = venueName;
         this.linkMoreInfo = linkMoreInfo;
@@ -24,6 +25,7 @@ public class Venue {
         this.kidsFriendly = kidsFriendly;
         this.foodAvailable = foodAvailable;
         this.parking = parking;
+        this.capacity = capacity;
     }
 
     public void setId(int id) {
@@ -71,5 +73,11 @@ public class Venue {
         this.parking = parking;
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
 
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
 }

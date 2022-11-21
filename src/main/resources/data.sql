@@ -1,17 +1,17 @@
-insert into VENUE(ID, VENUE_NAME, LINK_MORE_INFO, CITY, KIDS_FRIENDLY, FOOD_AVAILABLE, PARKING)
-values (1, 'BOCADERO', 'https://www.bocadero.be/nl/#', 'ANTWERPEN', false, true, true);
+insert into VENUE(ID, VENUE_NAME, LINK_MORE_INFO, CITY, KIDS_FRIENDLY, FOOD_AVAILABLE, PARKING, CAPACITY)
+values (1, 'BOCADERO', 'https://www.bocadero.be/nl/#', 'ANTWERPEN', false, true, true, 500);
 
-insert into VENUE (ID, VENUE_NAME, LINK_MORE_INFO, CITY, KIDS_FRIENDLY, FOOD_AVAILABLE, PARKING)
-values (2, 'JARDIM', 'https://www.jardim-antwerp.be/', 'ANTWERPEN', false, true, true);
+insert into VENUE (ID, VENUE_NAME, LINK_MORE_INFO, CITY, KIDS_FRIENDLY, FOOD_AVAILABLE, PARKING, CAPACITY)
+values (2, 'JARDIM', 'https://www.jardim-antwerp.be/', 'ANTWERPEN', false, true, true, 300);
 
-insert into VENUE (ID, VENUE_NAME, LINK_MORE_INFO, CITY, KIDS_FRIENDLY, FOOD_AVAILABLE, PARKING)
-values (3, 'ZOMERFABRIEK', 'https://zomerfabriek.be/', 'ANTWERPEN', true, true, false);
+insert into VENUE (ID, VENUE_NAME, LINK_MORE_INFO, CITY, KIDS_FRIENDLY, FOOD_AVAILABLE, PARKING, CAPACITY)
+values (3, 'ZOMERFABRIEK', 'https://zomerfabriek.be/', 'ANTWERPEN', true, true, false, 200);
 
-insert into VENUE (ID, VENUE_NAME, LINK_MORE_INFO, CITY, KIDS_FRIENDLY, FOOD_AVAILABLE, PARKING)
-values (4, 'ZOMERBAR', 'https://www.zva.be/zomerbar-circussen', 'ANTWERPEN', true, true, true);
+insert into VENUE (ID, VENUE_NAME, LINK_MORE_INFO, CITY, KIDS_FRIENDLY, FOOD_AVAILABLE, PARKING, CAPACITY)
+values (4, 'ZOMERBAR', 'https://www.zva.be/zomerbar-circussen', 'ANTWERPEN', true, true, true, 500);
 
-insert into VENUE (ID, VENUE_NAME, LINK_MORE_INFO, CITY, KIDS_FRIENDLY, FOOD_AVAILABLE, PARKING)
-values(5, 'BAR-N', 'http://bar-n.be/index.html', 'ESSEN', true, false, true);
+insert into VENUE (ID, VENUE_NAME, LINK_MORE_INFO, CITY, KIDS_FRIENDLY, FOOD_AVAILABLE, PARKING, CAPACITY)
+values(5, 'BAR-N', 'http://bar-n.be/index.html', 'ESSEN', true, false, true, 50);
 
 INSERT INTO ARTIST ( ID, ARTIST_NAME, BIO, GENRE, LINK_MORE_INFO, PORTFOLIO)
 VALUES ( 1, 'Discobaar a moeder', 'Discobaar A Moeder, een ondertussen legendarisch Antwerps fenomeen, draait al mee van in 2002. Het begon als een cafégrap van twee bevriende vinylfreaks, de grap houden ze er in, van draaien in een café genieten ze nog steeds, maar van een groots festival op z''n tijd zijn ze niet vies.', 'Pop, Soul, Disco', 'http://www.discobaaramoeder.be/', 'Lotto Arena 6/03/2020');

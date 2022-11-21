@@ -6,21 +6,43 @@
   <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
 </head>
 <body>
+
 <div th:replace="fragments/header :: header">header</div>
 
 <div class="border">
   <a th:if="${venue}" th:href="@{|/venuedetailsbyid/${prevIndex}|}" href="#" class="nextprev">&lt;</a>
 </div>
-  <div class="container">
+
+<div th:if="${showFilters}" class="filters">
+  <a class="buttonLook filterButton" th:href="@{|/venuedetailsbyid}">Filter</a>
+  <a class="buttonLook filterButton" th:href="@{|/venuedetailsbyid}">-</a>
+  <form>
+    <div class="oneFilter">
+      <input type ="submit" value="search" class="buttonLook filterButton">
+    </div>
+    <h3>Capacity</h3>
+    <div class="oneFilter">
+      <label for="minCapacity" class="filtername"></label>
+      <input type="number" id="minCapacity" name="minCapacity" value="0" step="50"> persons
+      <label for="maxCapacity" class="filtername"></label>
+      <input type="number" id="maxCapacity" name="maxCapacity" value="0" step="50"> persons
+    </div>
+  </form>
+</div>
+
+<div class="container">
+
   <div th:if="${venue}">
     <h1 th:text="${venue.venueName}">venueTitle</h1>
     <a th:href="${venue.linkMoreInfo}" href="#">More info</a>
   </div>
+
   <p th:unless="${venue}">No valid venue is chosen</p>
 </div>
 
 <div class="border">
   <a th:if="${venue}" th:href="@{|/venuedetailsbyid/${nextIndex}|}" href="#" class="nextprev">&gt;</a>
 </div>
+
 </body>
 </html>

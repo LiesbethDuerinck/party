@@ -9,16 +9,20 @@
 <div th:replace="fragments/header :: header">header</div>
 
 <div class="border"></div>
+
 <div class="container">
-  <div>Filter</div>
+
   <h2>Venue list</h2>
   <ul class="buttonlist">
     <li th:each="venue, iStat:${venues}">
     <a th:href="@{|/venuedetailsbyid/*{iStat.index +1}|}" th:text="|${venue.getVenueName()}|" href="">venue name</a>
     </li>
   </ul>
+</div>
 
   <div th:if="${test}" th:text="${test}"></div>
+
 <div class="border"></div>
+
 </body>
 </html>
