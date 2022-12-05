@@ -13,22 +13,7 @@
   <a th:if="${venue}" th:href="@{|/venuedetailsbyid/${prevIndex}|}" href="#" class="nextprev">&lt;</a>
 </div>
 
-<div th:if="${showFilters}" class="filters">
-  <a class="buttonLook filterButton" th:href="@{|/venuedetailsbyid}">Filter</a>
-  <a class="buttonLook filterButton" th:href="@{|/venuedetailsbyid}">-</a>
-  <form>
-    <div class="oneFilter">
-      <input type ="submit" value="search" class="buttonLook filterButton">
-    </div>
-    <h3>Capacity</h3>
-    <div class="oneFilter">
-      <label for="minCapacity" class="filtername"></label>
-      <input type="number" id="minCapacity" name="minCapacity" value="0" step="50"> persons
-      <label for="maxCapacity" class="filtername"></label>
-      <input type="number" id="maxCapacity" name="maxCapacity" value="0" step="50"> persons
-    </div>
-  </form>
-</div>
+
 
 <div class="container">
 

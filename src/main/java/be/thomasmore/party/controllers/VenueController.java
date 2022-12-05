@@ -20,16 +20,17 @@ public class VenueController {
 
     private Logger logger = LoggerFactory.getLogger(VenueController.class);
 
-
-
     @Autowired
     private VenueRepository venueRepository;
 
-    @GetMapping({"/venuedetailsbyid/filter"})
+    @GetMapping({"/venuelist/filter"})
     public String venueListWithFilter(Model model, @RequestParam(required = false) Integer minCapacity){
+        boolean showFilters = true;
         logger.info(String.format("venueListWithFilter -- min=%d", minCapacity));
         Iterable<Venue> venues = venueRepository.findAll();
         model.addAttribute("venues", venues);
+        model.addAttribute("showFilters", showFilters);
+        model.addAttribute("total", venueRepository.count());
         return "venuelist";
     }
 

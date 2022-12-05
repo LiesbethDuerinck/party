@@ -9,8 +9,27 @@
 <div th:replace="fragments/header :: header">header</div>
 
 <div class="border"></div>
+
 <div class="container">
+
   <h2>Artist list</h2>
+
+  <div th:if="${showFilters}" class="filters">
+    <a class="buttonLook filterButton" th:href="@{|/venuelist}">Filter</a>
+
+    <form>
+      <h3>keyword: </h3>
+      <div class="oneFilter">
+        <label for="keyWord" class="filtername"></label>
+        <input type="String" id="keyWord" name="keyWord" value="0" step="50">
+      </div>
+      <div class="oneFilter">
+        <input type ="submit" value="search" class="buttonLook filterButton">
+      </div>
+    </form>
+  </div>
+  <p th:text="|${total} venues|"></p>
+
   <ul class="buttonlist">
     <li th:each="artist, iStat:${artists}">
       <a th:href="@{|/artistdetailsbyid/${iStat.index +1}|}" th:text="|${artist.getArtistName()}|" href="">artist name</a>
