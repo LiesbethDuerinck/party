@@ -24,15 +24,30 @@ public class VenueController {
     private VenueRepository venueRepository;
 
     @GetMapping({"/venuelist/filter"})
-    public String venueListWithFilter(Model model, @RequestParam(required = false) Integer minCapacity){
+    public String venueListWithFilter(Model model, @RequestParam(required = false) Integer minCapacity, Integer maxCapacity){
         boolean showFilters = true;
         logger.info(String.format("venueListWithFilter -- min=%d", minCapacity));
-        Iterable<Venue> venues = venueRepository.findAll();
+
+        Iterable<Venue> venues = null;
+
+        if(minCapacity == null || maxCapacity == null)
+        {
+            venues = venueRepository.findAll();
+        }
+        else{
+            venues = venueRepository.findByCapacityBetweenQuery(minCapacity, maxCapacity);
+        }
+
         model.addAttribute("venues", venues);
         model.addAttribute("showFilters", showFilters);
-        model.addAttribute("total", venueRepository.count());
+        int counter = 0;
+        for(Object i : venues){
+            counter++;
+        }
+        model.addAttribute("total", counter);
         return "venuelist";
     }
+
 
     @GetMapping("/venuelist")
     public String venuelist (Model model){

@@ -15,20 +15,20 @@
   <h2>Artist list</h2>
 
   <div th:if="${showFilters}" class="filters">
-    <a class="buttonLook filterButton" th:href="@{|/venuelist}">Filter</a>
+    <a class="buttonLook filterButton" th:href="@{|/artistlist}">Filter</a>
 
     <form>
-      <h3>keyword: </h3>
+      <h3>Keyword: </h3>
       <div class="oneFilter">
         <label for="keyWord" class="filtername"></label>
-        <input type="String" id="keyWord" name="keyWord" value="0" step="50">
+        <input type="text" id="keyWord" name="keyWord">
       </div>
       <div class="oneFilter">
         <input type ="submit" value="search" class="buttonLook filterButton">
       </div>
     </form>
   </div>
-  <p th:text="|${total} venues|"></p>
+  <p th:text="|${total} artists|"></p>
 
   <ul class="buttonlist">
     <li th:each="artist, iStat:${artists}">
@@ -36,6 +36,10 @@
     </li>
   </ul>
 </div>
+
+<div th:if="${test}" th:text="${test}"></div>
+
 <div class="border"></div>
+
 </body>
 </html>

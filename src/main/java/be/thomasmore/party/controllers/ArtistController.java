@@ -1,10 +1,9 @@
 package be.thomasmore.party.controllers;
 
 import be.thomasmore.party.model.Artist;
-import be.thomasmore.party.model.Venue;
+
 import be.thomasmore.party.repositories.ArtistRepository;
-import be.thomasmore.party.repositories.VenueRepository;
-import org.slf4j.ILoggerFactory;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +24,25 @@ public class ArtistController {
     private ArtistRepository artistRepository;
 
     @GetMapping({"/artistlist/filter"})
-    public String venueListWithFilter(Model model, @RequestParam(required = false) Integer minCapacity){
+    public String artistListWithFilter(Model model, @RequestParam(required = false) String keyWord){
         boolean showFilters = true;
-        logger.info(String.format("artistListWithFilter -- min=%d", minCapacity));
-        Iterable<Artist> artists = artistRepository.findAll();
+        logger.info(String.format("artistListWithFilter -- min=%d", keyWord));
+
+        Iterable<Artist> artists = null;
+
+        if(keyWord== null){
+            artists = artistRepository.findAll();
+        }else{
+            artists = artistRepository.findByArtistName(keyWord);
+        }
+
         model.addAttribute("artists", artists);
         model.addAttribute("showFilters", showFilters);
-        model.addAttribute("total", artistRepository.count());
+        int counter = 0;
+        for(Object i : artists){
+            counter++;
+        }
+        model.addAttribute("total", counter);
         return "artistlist";
     }
 
