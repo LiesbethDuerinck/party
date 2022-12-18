@@ -4,6 +4,7 @@ import be.thomasmore.party.model.Venue;
 import be.thomasmore.party.model.Artist;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.repository.query.Param;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import be.thomasmore.party.repositories.VenueRepository;
@@ -34,9 +35,7 @@ public class VenueController {
         {
             venues = venueRepository.findAll();
         }
-        else{
-            venues = venueRepository.findByCapacityBetweenQuery(minCapacity, maxCapacity);
-        }
+        else venues = venueRepository.findByCapacityBetweenQuery(minCapacity, maxCapacity);
 
         model.addAttribute("venues", venues);
         model.addAttribute("showFilters", showFilters);
@@ -46,6 +45,58 @@ public class VenueController {
         }
         model.addAttribute("total", counter);
         return "venuelist";
+    }
+
+    @GetMapping({"venuelist/filter"})
+    public boolean venuelListWithFilter(Model model, @RequestParam(required = false) boolean hasParking){
+        boolean showFilters = true;
+        logger.info(String.valueOf(Boolean.hashCode(hasParking)));
+        Iterable<Venue> venues = null;
+
+        if(hasParking){
+            venues = venueRepository.findByParking(true);
+        }else{
+            venues = venueRepository.findByParking(false);
+        }
+
+        model.addAttribute("venues", venues);
+        model.addAttribute("showFilters", showFilters);
+
+        return Venue.isParking();
+    }
+
+    @GetMapping({"venuelist/filter"})
+    public boolean venuelListWithFilter(Model model, @RequestParam(required = false) boolean foodAvailable){
+        boolean showFilters = true;
+        logger.info(boolean.format("venueListWithFilter -- min=%d", foodAvailable));
+        Iterable<Venue> venues = null;
+
+        if(foodAvailable){
+            venues = venueRepository.findByFoodAvailable(true);
+        }else{
+            venues = venueRepository.findByFoodAvailable(false);
+        }
+
+        model.addAttribute("venues", venues);
+        model.addAttribute("showFilters", showFilters);
+
+    }
+
+    @GetMapping({"venuelist/filter"})
+    public boolean venuelListWithFilter(Model model, @RequestParam(required = false) boolean isKidsFriendly){
+        boolean showFilters = true;
+        logger.info(boolean.format("venueListWithFilter -- min=%d", isKidsFriendly));
+        Iterable<Venue> venues = null;
+
+        if(isKidsFriendly){
+            venues = venueRepository.findByKidsFriendly(true);
+        }else{
+            venues = venueRepository.findByKidsFriendly(false);
+        }
+
+        model.addAttribute("venues", venues);
+        model.addAttribute("showFilters", showFilters);
+
     }
 
 

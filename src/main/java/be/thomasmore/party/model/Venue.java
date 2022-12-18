@@ -5,7 +5,6 @@ import javax.persistence.Id;
 public class Venue {
     @Id
     private int id;
-
     private String venueName;
     private String linkMoreInfo;
     private String city;
@@ -67,7 +66,7 @@ public class Venue {
         this.foodAvailable = foodAvailable;
     }
     public void setKidsFriendly(boolean kidsFriendly) {
-        kidsFriendly = kidsFriendly;
+        this.kidsFriendly = kidsFriendly;
     }
     public void setParking(boolean parking) {
         this.parking = parking;

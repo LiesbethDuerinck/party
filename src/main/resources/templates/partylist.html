@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Party list</title>
+  <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header">header</div>
+
+<div class="border"></div>
+
+<div class="container">
+  <p th:text="|${total} parties|"></p>
+
+  <ul class="buttonlist">
+    <li th:each="party, iStat:${parties}">
+      <a th:href="@{|/partydetailbyid/*{iStat.index +1}|}" th:text="|${party.getPartyName()}|" href=""></a>
+    </li>
+  </ul>
+</div>
+<div class="border"></div>
+
+</body>
+</html>

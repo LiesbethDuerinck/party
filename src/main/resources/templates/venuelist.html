@@ -30,6 +30,44 @@
       <div class="oneFilter">
         <input type ="submit" value="search" class="buttonLook filterButton">
       </div>
+      <h3>Food</h3>
+      <div>
+        <input type="radio" id="foodYes" name="filterFood" value="yes">
+        <label for="foodYes" class="filtername">Yes</label>
+      <div>
+        <input type="radio" id="foodNo" name="filterFood" value="no">
+        <label for="foodNo" class="filtername">No</label>
+      </div>
+      <div>
+        <input type="radio" id="foodAll" name="filterFood" value="all">
+        <label for="foodAll" class="filtername">All</label>
+      </div>
+      <div>
+        <h3>Kids Friendly</h3>
+        <input type="radio" id="kidsYes" name="filterKids" value="yes">
+        <label for="kidsYes" class="filtername">Yes</label>
+        <div>
+          <input type="radio" id="kidsNo" name="filterKids" value="no">
+          <label for="kidsNo" class="filtername">No</label>
+        </div>
+        <div>
+          <input type="radio" id="kidsAll" name="filterKids" value="all">
+          <label for="kidsAll" class="filtername">All</label>
+        </div>
+      </div>
+      <div>
+        <h3>Parking</h3>
+        <input type="radio" id="parkingYes" name="filterParking" value="yes">
+        <label for="parkingYes" class="filtername">Yes</label>
+        <div>
+          <input type="radio" id="parkingNo" name="filterParking" value="no">
+          <label for="parkingNo" class="filtername">No</label>
+        </div>
+        <div>
+          <input type="radio" id="parkingAll" name="filterParking" value="all">
+          <label for="parkingAll" class="filtername">All</label>
+        </div>
+      </div>
     </form>
   </div>
   <p th:text="|${total} venues|"></p>

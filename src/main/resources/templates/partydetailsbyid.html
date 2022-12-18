@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Party Details By Id</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header">header</div>
+
+<div class="border">
+    <a th:if="${party}" th:href="@{|/partydetailsbyid/${prevIndex}|}" href="#" class="nextprev">&lt;</a>
+</div>
+
+<div class="container">
+
+    <div th:if="${party}">
+        <h1 th:text="${party.partyName}">partyTitle</h1>
+        <h2 th:text="${party.date}"></h2>
+        <h3 th:text="${party.priceInEur}">Price:</h3>
+        <h3 th:text="${party.doors}">Doors:</h3>
+        <a th:href="${party.linkMoreInfo}" href="#">Extra info:</a>
+    </div>
+
+    <p th:unless="${party}">No valid party is chosen</p>
+</div>
+
+<div class="border">
+    <a th:if="${party}" th:href="@{|/partydetailsbyid/${nextIndex}|}" href="#" class="nextprev">&gt;</a>
+</div>
+
+</body>
+</html>

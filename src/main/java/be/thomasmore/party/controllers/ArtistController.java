@@ -33,7 +33,7 @@ public class ArtistController {
         if(keyWord== null){
             artists = artistRepository.findAll();
         }else{
-            artists = artistRepository.findByArtistName(keyWord);
+            artists = artistRepository.findByArtistNameLikeIgnoreCase(keyWord);
         }
 
         model.addAttribute("artists", artists);
