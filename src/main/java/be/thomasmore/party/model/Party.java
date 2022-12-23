@@ -1,13 +1,14 @@
 package be.thomasmore.party.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 
 
 @Entity
 public class Party {
     @Id
-    private int id;
+    private Integer id;
     private String name;
     private Integer pricePresaleInEur;
     private Integer priceInEur;
@@ -16,21 +17,12 @@ public class Party {
     private Date date;
     @Temporal(TemporalType.TIME)
     private Date doors;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Venue venue;
+    @ManyToMany
+    Collection<Artist> artists;
 
     public Party(){}
-
-    public Party(int id, String name, Integer pricePresaleInEur, Integer priceInEur, String extraInfo, Date date, Date doors, Venue venue){
-        this.id = id;
-        this.name = name;
-        this.pricePresaleInEur = pricePresaleInEur;
-        this.priceInEur = priceInEur;
-        this.extraInfo = extraInfo;
-        this.date = date;
-        this.doors = doors;
-        this.venue = venue;
-    }
 
     public String getName() {
         return name;
@@ -44,7 +36,7 @@ public class Party {
         return doors;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -94,5 +86,13 @@ public class Party {
 
     public void setVenue(Venue venue) {
         this.venue = venue;
+    }
+
+    public Collection<Artist> getArtists() {
+        return artists;
+    }
+
+    public void setArtists(Collection<Artist> artists) {
+        this.artists = artists;
     }
 }

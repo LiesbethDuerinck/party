@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Venue list</title>
@@ -12,76 +12,83 @@
 
 <div class="container">
 
-  <h2>Venue list</h2>
+  <h2>Venues</h2>
 
+  <div th:unless="${showFilters}" class="filters">
+    <a class="buttonLook filterButton" th:href="@{/venuelist/filter}">Filter</a>
+  </div>
   <div th:if="${showFilters}" class="filters">
-    <a class="buttonLook filterButton" th:href="@{|/venuelist}">Filter</a>
-
+    <a class="buttonLook filterButton" th:href="@{/venuelist}">-</a>
     <form>
       <h3>Capacity</h3>
       <div class="oneFilter">
         <label for="minCapacity" class="filtername">min</label>
-        <input type="number" id="minCapacity" name="minCapacity" value="0" step="50"> persons
-      </div>
-      <div>
-        <label for="maxCapacity" class="filtername">max</label>
-        <input type="number" id="maxCapacity" name="maxCapacity" value="0" step="50"> persons
+        <input type="number" id="minCapacity" name="minCapacity" th:value="${minCapacity}" value="0" step="50"> persons
       </div>
       <div class="oneFilter">
-        <input type ="submit" value="search" class="buttonLook filterButton">
+        <label for="maxCapacity" class="filtername">max</label>
+        <input type="number" id="maxCapacity" name="maxCapacity" th:value="${maxCapacity}" value="0" step="50"> persons
       </div>
+
+      <h3>Parking</h3>
+      <div class="oneFilter">
+        <input type="radio" id="parkingYes" name="filterParking" value="yes" th:checked="${filterParking=='yes'}">
+        <label for="parkingYes" class="filterParking">Yes</label>
+      </div>
+      <div class="oneFilter">
+        <input type="radio" id="parkingNo" name="filterParking" value="no" th:ckecked="${filterParking=='no'}">
+        <label for="parkingNo" class="filterParking">No</label>
+      </div>
+      <div class="oneFilter">
+        <input type="radio" id="parkingAll" name="filterParking" value="all" th:checked="${filterParking=='all'}">
+        <label for="parkingAll" class="filterParking">All</label>
+      </div>
+
       <h3>Food</h3>
-      <div>
-        <input type="radio" id="foodYes" name="filterFood" value="yes">
-        <label for="foodYes" class="filtername">Yes</label>
-      <div>
-        <input type="radio" id="foodNo" name="filterFood" value="no">
-        <label for="foodNo" class="filtername">No</label>
+      <div class="oneFilter">
+        <input type="radio" id="foodYes" name="filterFood" value="yes" th:checked="${filterFood=='yes'}">
+        <label for="foodYes" class="filterName">Yes</label>
       </div>
-      <div>
-        <input type="radio" id="foodAll" name="filterFood" value="all">
-        <label for="foodAll" class="filtername">All</label>
+      <div class="oneFilter">
+        <input type="radio" id="foodNo" name="filterFood" value="no" th:checked="${filterFood=='no'}">
+        <label for="foodNo" class="filterName">No</label>
       </div>
-      <div>
-        <h3>Kids Friendly</h3>
-        <input type="radio" id="kidsYes" name="filterKids" value="yes">
-        <label for="kidsYes" class="filtername">Yes</label>
-        <div>
-          <input type="radio" id="kidsNo" name="filterKids" value="no">
-          <label for="kidsNo" class="filtername">No</label>
-        </div>
-        <div>
-          <input type="radio" id="kidsAll" name="filterKids" value="all">
-          <label for="kidsAll" class="filtername">All</label>
-        </div>
+      <div class="oneFilter">
+        <input type="radio" id="foodAll" name="filterFood" value="all" th:checked="${filterFood=='all'}">
+        <label for="foodAll" class="filterName">All</label>
       </div>
-      <div>
-        <h3>Parking</h3>
-        <input type="radio" id="parkingYes" name="filterParking" value="yes">
-        <label for="parkingYes" class="filtername">Yes</label>
-        <div>
-          <input type="radio" id="parkingNo" name="filterParking" value="no">
-          <label for="parkingNo" class="filtername">No</label>
-        </div>
-        <div>
-          <input type="radio" id="parkingAll" name="filterParking" value="all">
-          <label for="parkingAll" class="filtername">All</label>
-        </div>
+
+      <h3>Kids Friendly</h3>
+      <div class="oneFilter">
+        <input type="radio" id="kidsYes" name="filterKids" value="yes" th:checked="${filterKids=='yes'}">
+        <label for="kidsYes" class="filterName">Yes</label>
+      </div>
+      <div class="oneFilter">
+        <input type="radio" id="kidsNo" name="filterKids" value="no" th:checked="${filterKids=='no'}">
+        <label for="kidsNo" class="filterName">No</label>
+      </div>
+      <div class="oneFilter">
+        <input type="radio" id="kidsAll" name="filterKids" value="all" th:checked="${filterKids=='all'}">
+        <label for="kidsAll" class="filterName">All</label>
+      </div>
+      <div class="searchButton">
+        <input type ="submit" value="search" class="buttonLook filterButton">
       </div>
     </form>
   </div>
-  <p th:text="|${total} venues|"></p>
 
-  <ul class="buttonlist">
-    <li th:each="venue, iStat:${venues}">
-    <a th:href="@{|/venuedetailsbyid/*{iStat.index +1}|}" th:text="|${venue.getVenueName()}|" href="">venue name</a>
-    </li>
-  </ul>
+  <p th:text="|Found: ${total} venues|"></p>
+
+  <div class="venuelist">
+    <div th:each="venue, iStat:${venues}">
+      <a class="buttonLook itemButton" th:href="@{|/venuedetailsbyid/*{iStat.index + 1}|}" th:text="|${venue.getVenueName()}|" href="">venue name</a>
+    </div>
+  </div>
 </div>
 
-  <div th:if="${test}" th:text="${test}"></div>
-
 <div class="border"></div>
+
+<div th:replace="fragments/footer :: footer">Footer</div>
 
 </body>
 </html>

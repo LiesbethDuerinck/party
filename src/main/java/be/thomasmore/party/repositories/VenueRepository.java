@@ -8,19 +8,23 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 
-public interface VenueRepository extends CrudRepository <Venue, Integer> {
-    @Query("select v from Venue v where v.parking")
-    List<Venue> findByParking(boolean hasParking);
+public interface VenueRepository extends CrudRepository<Venue, Integer> {
 
-    @Query("select v from Venue v where v.foodAvailable")
-    List<Venue> findByFoodAvailable(boolean foodAvailable);
+    @Query("SELECT v FROM Venue v WHERE " +
+            "(:minCapacity IS NULL OR :minCapacity <= v.capacity) AND " +
+            "(:maxCapacity IS NULL OR v.capacity <= :maxCapacity) AND " +
+            "(:foodAvailable IS NULL OR v.foodAvailable = :foodAvailable) AND " +
+            "(:parking IS NULL OR v.parking=:parking) AND " +
+            "(:kidsFriendly IS NULL OR v.kidsFriendly=:kidsFriendly) ")
+    List<Venue> findByFilter(@Param("minCapacity") Integer minCapacity,
+                             @Param("maxCapacity") Integer maxCapacity,
+                             @Param("foodAvailable") Boolean filterFood,
+                             @Param("parking") Boolean filterParking,
+                             @Param("kidsFriendly") Boolean filterKids);
 
-    @Query("select v from Venue v where v.kidsFriendly")
-    List<Venue> findByKidsFriendly(boolean isKidsFriendly);
-
-    @Query("SELECT v FROM Venue v WHERE v.capacity between ?1 and ?2")
+    /*@Query("SELECT v FROM Venue v WHERE v.capacity between ?1 and ?2")
     List<Venue> findByCapacityBetweenQuery(int min, int max);
-
+*/
 }
 
 

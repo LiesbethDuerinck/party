@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -24,24 +25,25 @@ public class ArtistController {
     private ArtistRepository artistRepository;
 
     @GetMapping({"/artistlist/filter"})
-    public String artistListWithFilter(Model model, @RequestParam(required = false) String keyWord){
-        boolean showFilters = true;
-        logger.info(String.format("artistListWithFilter -- min=%d", keyWord));
+    public String artistListWithFilter(Model model,
+                                       @RequestParam(required = false) String keyword) {
+        logger.info(String.format("artistListWithFilter -- keyword=%s", keyword));
 
-        Iterable<Artist> artists = null;
+        List<Artist> artists = null;
 
-        if(keyWord== null){
-            artists = artistRepository.findAll();
-        }else{
-            artists = artistRepository.findByArtistNameLikeIgnoreCase(keyWord);
+        if(keyword == null){
+            artists = (List<Artist>) artistRepository.findAll();
+        }else {
+            artists = artistRepository.findByKeyword(keyword);
         }
+
+        int counter = 0;
+        for(Object i : artists) counter ++;
 
         model.addAttribute("artists", artists);
-        model.addAttribute("showFilters", showFilters);
-        int counter = 0;
-        for(Object i : artists){
-            counter++;
-        }
+        //model.addAttribute("nrOfArtists", artists.size());
+        model.addAttribute("showFilters", true);
+        model.addAttribute("keyword", keyword);
         model.addAttribute("total", counter);
         return "artistlist";
     }
@@ -59,10 +61,16 @@ public class ArtistController {
         Optional oArtist = null;
         Artist artist = null;
         int artistCount = 0;
+        boolean filterId = false;
 
         artistCount = (int) artistRepository.count();
 
-        oArtist = artistRepository.findById(Integer.parseInt(artistid));
+        try {
+            oArtist = artistRepository.findById(Integer.parseInt(artistid));
+        } catch (NumberFormatException e){
+            return null;
+        }
+
         if(oArtist.isPresent()){
             artist = (Artist) oArtist.get();
         }
@@ -80,6 +88,7 @@ public class ArtistController {
         model.addAttribute("artist", artist);
         model.addAttribute("prevIndex", prevId);
         model.addAttribute("nextIndex", nextId);
+        model.addAttribute("showFilters", filterId);
         return "artistdetailsbyid";
     }
 

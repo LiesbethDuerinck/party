@@ -1,0 +1,61 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+    <title>Party Edit</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header">Header</div>
+
+<div class="border"></div>
+
+<div class="container">
+
+  <div th:if="${party}">
+    <h1 th:text="${party.getName()}">partyName</h1>
+
+    <p th:text="|Date: ${party.getDate()}|">Date: </p>
+
+    <form th:action="@{|/admin/partyedit/${party.id}|}" method="post">
+      <div class="oneFilter">
+        <label for="partyName" class="filtername">Name: </label>
+        <input id="partyName" class="filternameValue" th:field="${party.name}">
+      </div>
+      <div class="oneFilter">
+        <label for="priceInEur" class="filtername">Price:</label>
+        <input id="priceInEur" class="filternameValue" th:field="${party.priceInEur}">
+      </div>
+      <div class="oneFilter">
+        <label for="pricePresaleInEur" class="filtername">Presale:</label>
+        <input id="pricePresaleInEur" class="filternameValue" th:field="${party.pricePresaleInEur}">
+      </div>
+      <div class="oneFilter">
+        <label for="extraInfo" class="filtername">Extra:</label>
+        <textarea id="extraInfo" class="filternameValue" th:field="${party.extraInfo}"></textarea>
+      </div>
+
+      <p th:text="|Doors: ${party.getDoors()}|">Doors:</p>
+
+
+      <p th:text="|City: ${party.venue.city}|">City:</p>
+
+      <div class="searchButton">
+        <input type="submit" value="save" class="buttonLook editButton">
+      </div>
+      <div>
+        <a th:href="@{|/partydetailsbyid/${id}|}" class="buttonLook editButton">Cancel</a>
+
+      </div>
+    </form>
+  </div>
+  <p th:unless="${party}">No valid venue is chosen</p>
+</div>
+
+<div class="border"></div>
+
+<div th:replace="fragments/footer :: footer">Footer</div>
+
+
+</body>
+</html>

@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Artist details by id</title>
@@ -16,15 +16,16 @@
 <div class="container">
   <div th:if="${artist}">
     <h1 th:text="${artist.getArtistName()}">artistName</h1>
-    <a th:href="${artist.getLinkMoreInfo()}" href="#">More info</a>
-    <p th:href="${artist.getBio()}"></p>
-    <p th:href="${artist.getPortfolio()}"></p>
+      <p th:text="|Bio: ${artist.getBio()}|"></p>
+      <p th:text="|Portfolio: ${artist.getPortfolio()}|"></p>
+      <a th:href="${artist.getLinkMoreInfo()}" href="#" target="_blank">More info</a>
   </div>
-  <p th:unless="${artist}">No valid venue is chosen</p>
+    <p th:unless="${artist}">No valid venue is chosen</p>
 </div>
 
 <div class="border">
   <a th:if="${artist}" th:href="@{|/artistdetailsbyid/${nextIndex}|}" href="#" class="nextprev">&gt;</a>
 </div>
+<div th:replace="fragments/footer :: footer">Footer</div>
 </body>
 </html>

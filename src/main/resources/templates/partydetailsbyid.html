@@ -1,34 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Party Details By Id</title>
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+    <title>Party Details By Id</title>
 </head>
 <body>
-
-<div th:replace="fragments/header :: header">header</div>
+<div th:replace="fragments/header :: header">Header</div>
 
 <div class="border">
-    <a th:if="${party}" th:href="@{|/partydetailsbyid/${prevIndex}|}" href="#" class="nextprev">&lt;</a>
+   <a th:if="${party}" th:href="@{|/partydetailsbyid/${prevIndex}|}" href="#" class="nextprev">&lt;</a>
+</div>
+
+<div class="editButton">
+    <a th:href="@{|/admin/partyedit/${id}|}" class="buttonLook smallButton">Edit</a>
 </div>
 
 <div class="container">
-
     <div th:if="${party}">
-        <h1 th:text="${party.partyName}">partyTitle</h1>
-        <h2 th:text="${party.date}"></h2>
-        <h3 th:text="${party.priceInEur}">Price:</h3>
-        <h3 th:text="${party.doors}">Doors:</h3>
-        <a th:href="${party.linkMoreInfo}" href="#">Extra info:</a>
+        <h1 th:text="${party.getName()}">partyName</h1>
+
+            <p th:text="|Date: ${party.getDate()}|">Date: </p>
+
+            <p th:text="|Presale: ${party.getPricePresaleInEur()} euro|">Presale:</p>
+
+            <p th:text="|Price: ${party.getPriceInEur()} euro|">Price:</p>
+
+            <p th:text="|Doors: ${party.getDoors()}|">Doors:</p>
+
+            <p th:text="|Extra: ${party.getExtraInfo()}|">ExtraInfo:</p>
+
+            <p th:text="|City: ${party.venue.city}|">
     </div>
-
-    <p th:unless="${party}">No valid party is chosen</p>
+        <p th:unless="${party}">No valid venue is chosen</p>
 </div>
-
 <div class="border">
     <a th:if="${party}" th:href="@{|/partydetailsbyid/${nextIndex}|}" href="#" class="nextprev">&gt;</a>
 </div>
+
+
+<div th:replace="fragments/footer :: footer">Footer</div>
 
 </body>
 </html>

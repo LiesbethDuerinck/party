@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">>
 <head>
   <meta charset="UTF-8">
   <title>Artist list</title>
@@ -14,32 +14,34 @@
 
   <h2>Artist list</h2>
 
+  <div th:unless="${showFilters}" class="filters">
+    <a class="buttonLook filterButton" th:href="@{|/artistlist/filter}">Filter</a>
+  </div>
   <div th:if="${showFilters}" class="filters">
-    <a class="buttonLook filterButton" th:href="@{|/artistlist}">Filter</a>
-
-    <form>
-      <h3>Keyword: </h3>
-      <div class="oneFilter">
-        <label for="keyWord" class="filtername"></label>
-        <input type="text" id="keyWord" name="keyWord">
-      </div>
-      <div class="oneFilter">
-        <input type ="submit" value="search" class="buttonLook filterButton">
-      </div>
-    </form>
+    <a class="buttonLook filterButton" th:href="@{/artistlist}">-</a>
+  <form>
+    <h3>Keyword: </h3>
+    <div class="oneFilter">
+      <label for="keyWord" class="filtername"></label>
+      <input type="text" id="keyWord" name="keyWord">
+    </div>
+    <div class="oneFilter">
+      <input type ="submit" value="search" class="buttonLook filterButton">
+    </div>
+  </form>
   </div>
   <p th:text="|${total} artists|"></p>
 
-  <ul class="buttonlist">
-    <li th:each="artist, iStat:${artists}">
-      <a th:href="@{|/artistdetailsbyid/${iStat.index +1}|}" th:text="|${artist.getArtistName()}|" href="">artist name</a>
-    </li>
-  </ul>
+  <div class="artistlist">
+    <div th:each="artist, iStat:${artists}">
+      <a class="buttonLook itemButton" th:href="@{|/artistdetailsbyid/${iStat.index +1}|}" th:text="|${artist.getArtistName()}|" href="">artist name</a>
+    </div>
+  </div>
 </div>
 
-<div th:if="${test}" th:text="${test}"></div>
-
 <div class="border"></div>
+
+<div th:replace="fragments/footer :: footer">Footer</div>
 
 </body>
 </html>

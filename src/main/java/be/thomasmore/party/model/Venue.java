@@ -16,6 +16,10 @@ public class Venue {
 
     public Venue(){}
 
+    public Venue(int id){
+        this.id = id;
+    }
+
     public Venue(int id, String venueName, String linkMoreInfo, String city, boolean kidsFriendly, boolean foodAvailable, boolean parking, int capacity){
         this.id = id;
         this.venueName = venueName;
@@ -56,7 +60,7 @@ public class Venue {
     public boolean isKidsFriendly() {
         return kidsFriendly;
     }
-    public boolean isParking() {
+    public boolean hasParking() {
         return parking;
     }
     public void setCity(String city) {
@@ -71,11 +75,9 @@ public class Venue {
     public void setParking(boolean parking) {
         this.parking = parking;
     }
-
     public int getCapacity() {
         return capacity;
     }
-
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
